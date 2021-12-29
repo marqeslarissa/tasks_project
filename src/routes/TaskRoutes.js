@@ -3,9 +3,10 @@ const router = express.Router();
 
 const TaskController = require('../controller/TaskController');
 const TaskValidation = require('../middlewares/TaskValidation');
+const MacaddressValidation = require('../middlewares/MacaddressValidation');
 
 router.post('/', TaskValidation, TaskController.create);//toda vez que chegar post em /task chama os tasks
 router.put('/:id', TaskValidation, TaskController.update);
-router.get('/filter/all', TaskController);
+router.get('/filter/all', MacaddressValidation, TaskController);
 
 module.exports = router;
