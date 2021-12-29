@@ -10,6 +10,7 @@
   "author": "Larissa Marques",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.28.0",
     "express": "^4.17.2"
   },
   "devDependencies": {
