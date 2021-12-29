@@ -1,5 +1,7 @@
 const express = require('express'); //carrego a pasta inteira dentro da const
+const cors = require('cors');
 const server = express(); // jogo dentro de server inicializado
+server.use(cors());
 server.use(express.json()); //nosso servidor vai receber e enviar informações no formato json
 
 // server.get('/teste', (req, res) => { //navegador só aceita GET - por isso usar insomnia para outros verbos
@@ -9,7 +11,6 @@ server.use(express.json()); //nosso servidor vai receber e enviar informações 
 const TaskRoutes = require('./routes/TaskRoutes');
 server.use('/task', TaskRoutes); //use injeta na API
 
-server.listen(3000, () => {  
-  console.log('API ONLINE'); //ficar escutando na porta 3000 e executar a funcao
-}); 
-
+server.listen(3333, () => {
+  console.log('API ONLINE');
+});
