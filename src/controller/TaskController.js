@@ -85,7 +85,7 @@ class TaskController {   //estrututa para cadastrar infor no mongo
       });
   }
 
-  async late(req, res){
+  async late(req, res){ //filtro de tarefas atrasadas
     await TaskModel
     .find({
       'when': {'$lt': current}, //procura baseada na hr - WHEN atual - CURRENT // operador $lt  lass then - menor que
@@ -100,7 +100,7 @@ class TaskController {   //estrututa para cadastrar infor no mongo
     });
   }
 
-  async today(req, res){
+  async today(req, res){ //filtro de tarefas do dia atual
     await TaskModel
           .find({ 
             'macaddress': {'$in': req.params.macaddress},
@@ -115,7 +115,7 @@ class TaskController {   //estrututa para cadastrar infor no mongo
           });
   }
 
-  async week(req, res){
+  async week(req, res){ //filtro de tarefas da semana atual
     await TaskModel
           .find({ 
             'macaddress': {'$in': req.params.macaddress},
@@ -130,7 +130,7 @@ class TaskController {   //estrututa para cadastrar infor no mongo
           });
   }
 
-  async month(req, res){
+  async month(req, res){ //filtro de tarefas do mês atual
     await TaskModel
           .find({ 
             'macaddress': {'$in': req.params.macaddress},
@@ -145,7 +145,7 @@ class TaskController {   //estrututa para cadastrar infor no mongo
           });
   }
 
-  async year(req, res){ 
+  async year(req, res){ //filtro de tarefas do ano atual
     await TaskModel
           .find({ 
             'macaddress': {'$in': req.params.macaddress},

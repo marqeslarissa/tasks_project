@@ -13,7 +13,7 @@ router.put('/:id/:done', TaskController.done);  // identifica a tarefa - id e at
 
 router.get('/filter/all/:macaddress',   TaskController.all);
 router.get('/filter/late/:macaddress',  TaskController.late); //filtro de tarefa atrasada
-router.get('/filter/today/:macaddress', TaskController.today); 
+router.get('/filter/today/:macaddress', TaskController.today); //filtro de tarefas do dia atual
 router.get('/filter/week/:macaddress',  TaskController.week);
 router.get('/filter/month/:macaddress', TaskController.month);
 router.get('/filter/year/:macaddress',  TaskController.year);
