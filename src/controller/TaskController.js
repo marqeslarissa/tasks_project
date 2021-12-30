@@ -1,7 +1,7 @@
 const TaskModel = require('../model/TaskModel');
 const { 
-  startOfDay, 
-  endOfDay, 
+  startOfDay, //pegar o primeiro hr:min do dia
+  endOfDay,  //pegar o ultimo hr:min do dia
   startOfWeek, 
   endOfWeek,
   startOfMonth,
@@ -10,7 +10,7 @@ const {
   endOfYear
  } = require('date-fns');
 
-const current = new Date();
+const current = new Date(); //guardar a data e hr atual
 
 class TaskController {   //estrututa para cadastrar infor no mongo
 
@@ -73,10 +73,10 @@ class TaskController {   //estrututa para cadastrar infor no mongo
   }
 
   async done(req, res){
-    await TaskModel.findByIdAndUpdate(
-      {'_id': req.params.id},
+    await TaskModel.findByIdAndUpdate(   // vai buscar a tarefa pelo id
+      {'_id': req.params.id},   //identifica a tarefa pra atualizar o status
       {'done': req.params.done},
-      {new: true})
+      {new: true})    // sempre devolver os dados da tarefa atualizado
       .then(response => {
         return res.status(200).json(response);
       })
@@ -88,10 +88,10 @@ class TaskController {   //estrututa para cadastrar infor no mongo
   async late(req, res){
     await TaskModel
     .find({
-      'when': {'$lt': current},
-      'macaddress': {'$in': req.params.macaddress}
+      'when': {'$lt': current}, //procura baseada na hr - WHEN atual - CURRENT // operador $lt  lass then - menor que
+      'macaddress': {'$in': req.params.macaddress} 
     })
-    .sort('when')
+    .sort('when') //devolver as tarefas organizadas por data/hr
     .then( response => {
       return res.status(200).json(response);
     })
@@ -104,9 +104,9 @@ class TaskController {   //estrututa para cadastrar infor no mongo
     await TaskModel
           .find({ 
             'macaddress': {'$in': req.params.macaddress},
-            'when': {'$gte': startOfDay(current), '$lte': endOfDay(current)}
+            'when': {'$gte': startOfDay(current), '$lte': endOfDay(current)} //$gte - >= hr atual,  $lte <= hr atual
           })
-          .sort('when')
+          .sort('when') //organizada por data/hr
           .then(response => {
             return res.status(200).json(response);
           })
